@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+
+    <xacro:property name="test_article_weight" value="3" />
+   <!-- previous link called cable-->
+   <!-- origin at -cable_length-->
+   <joint name="test_Article_joint" type="fixed">
+       <parent link="cable"/>
+       <child link="pannel"/>
+       <origin xyz="0 0 ${-cable_length}"/>     
+   </joint>
+
+   <link name="pannel">
+       <visual>
+           <origin xyz="0.0 0.0 ${-0.25/2}" rpy="0.0 0.0 0.0"/>
+           <geometry>
+               <box size="0.05 0.25 0.25"/>
+           </geometry>
+           <material name="grey"/>
+       </visual>
+       <collision>
+        <origin xyz="0.0 0.0 ${-0.25/2}" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <box size="0.05 0.25 0.25"/>
+        </geometry>
+       </collision>
+       <xacro:inertial_box mass="${test_article_weight}" x="0.05" y="0.25" z="0.25">
+            <origin xyz="0.0 0.0 ${-0.25/2}" rpy="0.0 0.0 0.0"/>
+       </xacro:inertial_box>
+   </link>
+   
+</robot>
